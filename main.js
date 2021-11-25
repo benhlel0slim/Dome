@@ -1,9 +1,9 @@
 let likes = document.querySelectorAll('.fa')
-console.log(likes)
 let btnPlus=document.querySelectorAll('.plus-btn')
 let btnMinus=document.querySelectorAll('.minus-btn')
 console.log(btnPlus)
 let counter=document.querySelectorAll('.Quant')
+let deleteC=document.querySelectorAll('.delete')
 
 for (let i=0;i<likes.length;i++){
     likes[i].addEventListener('click',function(){
@@ -18,8 +18,8 @@ for (let i=0;i<likes.length;i++){
 // btnPlus feature
 for(let i=0;i<btnPlus.length;i++){
     btnPlus[i].addEventListener('click',function(){
-        console.log('aa')
     counter[i].value=Number(counter[i].value)+1
+    totalPrice()
 })}
     // btnMinus feature
 
@@ -27,6 +27,7 @@ for(let i=0;i<btnPlus.length;i++){
      btnMinus[i].addEventListener('click',function(){
          if(counter[i].value>1){
              counter[i].value=Number(counter[i].value)-1
+             totalPrice()
          }
      })
  }
@@ -35,5 +36,19 @@ for(let i=0;i<btnPlus.length;i++){
  for (let i=0;i<deleteC.length;i++){
      deleteC[i].addEventListener('click',function(){
          deleteC[i].parentNode.remove()    
+         totalPrice()
      })
+     }
+
+function totalPrice(){
+         let prices=document.querySelectorAll('.price')
+         let count=document.querySelectorAll('.Quant')
+         let sum =0
+         console.log(prices);
+         console.log(count);
+         for (let i=0;i<count.length;i++){
+             sum=prices[i].innerHTML*count[i].value+sum
+         }
+         console.log(sum);
+         document.querySelector('#finalPrice').value=sum
      }
